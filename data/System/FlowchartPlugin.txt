@@ -120,12 +120,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
      | *File:* | *Description:* |
      | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
-     | ==data/TWiki/FlowchartPluginExample.txt== | Plugin Example |
-     | ==data/TWiki/FlowchartPluginExample.txt,v== | Plugin Example repository |
+     | ==data/System/FlowchartPluginExample.txt== | Plugin Example |
+     | ==data/System/FlowchartPluginExample.txt,v== | Plugin Example repository |
      | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-     | ==pub/TWiki/FlowchartPluginExample/flowchart_FlowchartPluginExample.png== | The example image to show |
-     | ==pub/TWiki/FlowchartPluginExample/flowchart_FlowchartPluginExample.svg== | The example base SVG |
-     | ==pub/TWiki/FlowchartPluginExample/flowchartMapImg_FlowchartPluginExample.txt== | The example map file |
+     | ==pub/System/FlowchartPluginExample/flowchart_FlowchartPluginExample.png== | The example image to show |
+     | ==pub/System/FlowchartPluginExample/flowchart_FlowchartPluginExample.svg== | The example base SVG |
+     | ==pub/System/FlowchartPluginExample/flowchartMapImg_FlowchartPluginExample.txt== | The example map file |
 	* Install the [[http://www.imagemagick.org][ImageMagick]]
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the installation was successful:

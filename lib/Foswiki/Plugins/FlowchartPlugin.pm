@@ -48,12 +48,12 @@
 # the function name. Remove disabled handlers you do not need.
 #
 # NOTE: To interact with TWiki use the official TWiki functions 
-# in the TWiki::Func module. Do not reference any functions or
+# in the Foswiki::Func module. Do not reference any functions or
 # variables elsewhere in TWiki!!
 
 
 # =========================
-package TWiki::Plugins::FlowchartPlugin;
+package Foswiki::Plugins::FlowchartPlugin;
 
 # =========================
 use vars qw(
@@ -82,19 +82,19 @@ sub initPlugin
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1.021 ) {
-        TWiki::Func::writeWarning( "Version mismatch between $pluginName and Plugins.pm" );
+    if( $Foswiki::Plugins::VERSION < 1.021 ) {
+        Foswiki::Func::writeWarning( "Version mismatch between $pluginName and Plugins.pm" );
         return 0;
     }
 
     # Get plugin debug flag
-    $debug = TWiki::Func::getPluginPreferencesFlag( "DEBUG" );
+    $debug = Foswiki::Func::getPluginPreferencesFlag( "DEBUG" );
 
     # Get plugin preferences, the variable defined by:          * Set EXAMPLE = ...
-    $exampleCfgVar = TWiki::Func::getPluginPreferencesValue( "EXAMPLE" ) || "default";
+    $exampleCfgVar = Foswiki::Func::getPluginPreferencesValue( "EXAMPLE" ) || "default";
 
     # Plugin correctly initialized
-    TWiki::Func::writeDebug( "- TWiki::Plugins::${pluginName}::initPlugin( $web.$topic ) is OK" ) if $debug;
+    Foswiki::Func::writeDebug( "- Foswiki::Plugins::${pluginName}::initPlugin( $web.$topic ) is OK" ) if $debug;
     return 1;
 }
 
@@ -104,10 +104,10 @@ sub commonTagsHandler
 {
 ### my ( $text, $topic, $web ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
 
-    TWiki::Func::writeDebug( "- ${pluginName}::commonTagsHandler( $_[2].$_[1] )" ) if $debug;
+    Foswiki::Func::writeDebug( "- ${pluginName}::commonTagsHandler( $_[2].$_[1] )" ) if $debug;
 
     # This is the place to define customized tags and variables
-    # Called by TWiki::handleCommonTags, after %INCLUDE:"..."%
+    # Called by Foswiki::handleCommonTags, after %INCLUDE:"..."%
 
     # do custom extension rule, like for example:
     $_[0] =~ s/%FLOWCHART%/&mostraFluxograma($_[0], $_[1], $_[2], '')/ge;
@@ -149,11 +149,11 @@ my $styleLinha = 'stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;
 sub mostraFluxograma
 {
   my ( $text, $topic, $web, $params ) = @_;
-  my $myPub = TWiki::Func::getPubDir() ."/$web/$topic";
-  my $mapImg = TWiki::Func::readFile( "$myPub/flowchartMapImg_$topic.txt" );
+  my $myPub = Foswiki::Func::getPubDir() ."/$web/$topic";
+  my $mapImg = Foswiki::Func::readFile( "$myPub/flowchartMapImg_$topic.txt" );
   
-  $style = TWiki::Func::extractNameValuePair( $params, 'tag-style' ) ||
-           TWiki::Func::getPluginPreferencesValue( 'TAG_STYLE' )    ||
+  $style = Foswiki::Func::extractNameValuePair( $params, 'tag-style' ) ||
+           Foswiki::Func::getPluginPreferencesValue( 'TAG_STYLE' )    ||
            'border:1px dotted #505050;';
   
   return "$mapImg
@@ -163,26 +163,26 @@ sub mostraFluxograma
 sub desenhaFluxograma
 {
   my ( $text, $topic, $web, $params ) = @_;
-  my $myPub = TWiki::Func::getPubDir() ."/$web/$topic";
+  my $myPub = Foswiki::Func::getPubDir() ."/$web/$topic";
   my $percentReduce;
 
-  $caixa{'w'} =     TWiki::Func::extractNameValuePair( $params, 'item-w' ) ||
-                    TWiki::Func::getPluginPreferencesValue('ITEM_WIDTH')   ||
+  $caixa{'w'} =     Foswiki::Func::extractNameValuePair( $params, 'item-w' ) ||
+                    Foswiki::Func::getPluginPreferencesValue('ITEM_WIDTH')   ||
                     140;
-  $caixa{'h'} =     TWiki::Func::extractNameValuePair( $params, 'item-h' ) ||
-                    TWiki::Func::getPluginPreferencesValue('ITEM_HEIGHT')  ||
+  $caixa{'h'} =     Foswiki::Func::extractNameValuePair( $params, 'item-h' ) ||
+                    Foswiki::Func::getPluginPreferencesValue('ITEM_HEIGHT')  ||
                     40;
-  $caixa{'areaX'} = TWiki::Func::extractNameValuePair( $params, 'area-w' ) ||
-                    TWiki::Func::getPluginPreferencesValue('ITEM_AREA_W')  ||
+  $caixa{'areaX'} = Foswiki::Func::extractNameValuePair( $params, 'area-w' ) ||
+                    Foswiki::Func::getPluginPreferencesValue('ITEM_AREA_W')  ||
                     180;
-  $caixa{'areaY'} = TWiki::Func::extractNameValuePair( $params, 'area-h' ) ||
-                    TWiki::Func::getPluginPreferencesValue('ITEM_AREA_H')  ||
+  $caixa{'areaY'} = Foswiki::Func::extractNameValuePair( $params, 'area-h' ) ||
+                    Foswiki::Func::getPluginPreferencesValue('ITEM_AREA_H')  ||
                     70;
-  $percentReduce =  TWiki::Func::extractNameValuePair( $params, 'percent' ) ||
-                    TWiki::Func::getPluginPreferencesValue('PERCENT_IMG')   ||
+  $percentReduce =  Foswiki::Func::extractNameValuePair( $params, 'percent' ) ||
+                    Foswiki::Func::getPluginPreferencesValue('PERCENT_IMG')   ||
                     70;
-  $textSize =       TWiki::Func::extractNameValuePair( $params, 'text-size' ) ||
-                    TWiki::Func::getPluginPreferencesValue('TEXT_SIZE')       ||
+  $textSize =       Foswiki::Func::extractNameValuePair( $params, 'text-size' ) ||
+                    Foswiki::Func::getPluginPreferencesValue('TEXT_SIZE')       ||
                     17;
 
   $text =~ s/.*%FLOWCHART_START%(.*)$/$1/   if ( $text =~ m/%FLOWCHART_START%/ );
@@ -213,8 +213,8 @@ sub desenhaFluxograma
   unless (-d $myPub){
     mkdir $myPub or die "can't create directory $myPub";
   }
-  TWiki::Func::saveFile( "$myPub/flowchart_$topic.svg", $svg );
-  TWiki::Func::saveFile( "$myPub/flowchartMapImg_$topic.txt", $mapImg );
+  Foswiki::Func::saveFile( "$myPub/flowchart_$topic.svg", $svg );
+  Foswiki::Func::saveFile( "$myPub/flowchartMapImg_$topic.txt", $mapImg );
   system ("convert", "$myPub/flowchart_$topic.svg",
           '-resize', $percentReduce.'%x'.$percentReduce.'%', "$myPub/flowchart_$topic.png");
 }
@@ -275,7 +275,7 @@ sub montaSVG
   <<             Created with FlowchartPlugin for TWiki                >>
   <<  Get it on http://twiki.org/cgi-bin/view/Plugins/FlowchartPlugin  >>
     This flowchart was based on:
-    '. TWiki::Func::getViewUrl( $web, $topic ) .'
+    '. Foswiki::Func::getViewUrl( $web, $topic ) .'
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->';
 
   $svg .= &encaixaItemRecursive();
@@ -599,7 +599,7 @@ sub encaixaMapImg
   }
   $fluxItens{$id}->{maped} = 1;
   
-  my $URL = TWiki::Func::getViewUrl( $web, $topic );
+  my $URL = Foswiki::Func::getViewUrl( $web, $topic );
   my $title = $fluxItens{$id}->{title};
   $title = encode( "iso-8859-1", decode("utf-8", $title) );      # convert from utf-8 to iso
   $title =~ s/%FLOWCHART_BR%/ /g;  $title =~ s/\"/\'/g;  $title =~ s/\s+/ /g;
@@ -630,17 +630,17 @@ sub afterSaveHandler
 {
 ### my ( $text, $topic, $web, $error ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
 
-    TWiki::Func::writeDebug( "- ${pluginName}::afterSaveHandler( $_[2].$_[1] )" ) if $debug;
+    Foswiki::Func::writeDebug( "- ${pluginName}::afterSaveHandler( $_[2].$_[1] )" ) if $debug;
     
     my $web = $_[2];
     $web =~ s/(\/)/\./g;
 
-    my $tempFileName = $TWiki::cfg{TempfileDir} . '/' . $web . '_' . $_[1] . '.txt';
+    my $tempFileName = $Foswiki::cfg{TempfileDir} . '/' . $web . '_' . $_[1] . '.txt';
 
-    TWiki::Func::saveFile( $tempFileName, 'ini' );
+    Foswiki::Func::saveFile( $tempFileName, 'ini' );
     
-    # This handler is called by TWiki::Store::saveTopic just after the save action.
-    # New hook in TWiki::Plugins $VERSION = '1.020'
+    # This handler is called by Foswiki::Store::saveTopic just after the save action.
+    # New hook in Foswiki::Plugins $VERSION = '1.020'
 
     # Hire is the right position to create the image.
     if ( $_[0] =~ m/%FLOWCHART%/ ) {
