@@ -3,6 +3,7 @@
 # Copyright (C) 2000-2003 Andrea Sterbini, a.sterbini@flashnet.it
 # Copyright (C) 2001-2004 Peter Thoeny, peter@thoeny.com
 # Copyright (C) 2005... Aurelio A. Heckert, aurium@gmail.com
+# Copyright (C) 2009... Foswiki Contributors
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,7 +18,7 @@
 #
 # =========================
 #
-# This is an empty TWiki plugin. Use it as a template
+# This is an empty Foswiki plugin. Use it as a template
 # for your own plugins; see %SYSTEMWEB%.Plugins for details.
 #
 # Each plugin is a package that may contain these functions:        VERSION:
@@ -47,9 +48,9 @@
 # disabled. To enable a handler remove the leading DISABLE_ from
 # the function name. Remove disabled handlers you do not need.
 #
-# NOTE: To interact with TWiki use the official TWiki functions 
+# NOTE: To interact with Foswiki use the official Foswiki functions 
 # in the Foswiki::Func module. Do not reference any functions or
-# variables elsewhere in TWiki!!
+# variables elsewhere in Foswiki!!
 
 
 # =========================
@@ -61,7 +62,7 @@ use vars qw(
         $debug $exampleCfgVar
     );
 
-# This should always be $Rev$ so that TWiki can determine the checked-in
+# This should always be $Rev$ so that Foswiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
 $VERSION = '$Rev$';
@@ -69,7 +70,7 @@ $VERSION = '$Rev$';
 # This is a free-form string you can use to "name" your own plugin version.
 # It is *not* used by the build automation tools, but is reported as part
 # of the version number in PLUGINDESCRIPTIONS.
-$RELEASE = 'Dakar';
+$RELEASE = '30 Mar 2009';
 
 # for th 1.0 need:
 #   * Validate data
@@ -272,8 +273,8 @@ sub montaSVG
   my ( $topic, $web ) = @_;
 
   my $svg = '<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  <<             Created with FlowchartPlugin for TWiki                >>
-  <<  Get it on http://twiki.org/cgi-bin/view/Plugins/FlowchartPlugin  >>
+  <<             Created with FlowchartPlugin for Foswiki                >>
+  <<      Get it on http://foswiki.org/Extensions/FlowchartPlugin        >>
     This flowchart was based on:
     '. Foswiki::Func::getViewUrl( $web, $topic ) .'
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->';

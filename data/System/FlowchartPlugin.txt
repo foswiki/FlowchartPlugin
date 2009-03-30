@@ -1,9 +1,7 @@
 ---+!! <nop>%TOPIC%
 
 You can create flowcharts from textual content on the topic.
-<div align="right">
-  <small>[[Foswiki:Extensions.FlowchartPluginPtbr][Este t�pico em Portugu�s do Brasil]]</small>
-</div>
+
 %TOC%
 
 ------
@@ -113,10 +111,10 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 #InstallationInstructions
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
 	* Download the ZIP file from the Plugin web (see below)
-	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	* Unzip ==%TOPIC%.zip== in your Foswiki installation directory. Content:
      | *File:* | *Description:* |
      | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
@@ -127,27 +125,26 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
      | ==pub/System/FlowchartPluginExample/flowchart_FlowchartPluginExample.svg== | The example base SVG |
      | ==pub/System/FlowchartPluginExample/flowchartMapImg_FlowchartPluginExample.txt== | The example map file |
 	* Install the [[http://www.imagemagick.org][ImageMagick]]
-	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* (Dakar) Visit =configure= in your Foswiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the installation was successful:
 	* See the %SYSTEMWEB%.FlowchartPluginExample
 
 ---++ Plugin Info
 
-<!-- INI Plugin Info -->
-|  Plugin Author: | TWiki:Main.AurelioAHeckert |
-|  Plugin Version: | %$VERSION% |
+|  Plugin Author: | TWiki:Main.AurelioAHeckert (Foswiki port - Foswiki:Main.KennethLavrsen.) |
+|  Plugin Version: | 30 Mar 2009 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  13786 | Bugs:Item4090 - Failed if topics attachment directory did not exist (TWiki:Main.AndrewRJones). |
+|  30 Mar 2009 | Ported to Foswiki |
+|  13786 | Bugs:Item4090 - Failed if topics attachment directory did not exist (Foswiki:Main.AndrewRJones). |
 |  13779 | Bugs:Item4085 - Fixed problem with subwebs. Patch by TWiki:Main.JohnWorsley. |
 |  27 Jun 2005: | Initial public version 0.8 |
-|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  Foswiki Dependency: | $Foswiki::Plugins::VERSION 1.024 |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | [[http://www.imagemagick.org][ImageMagick]] |
-|  Perl Version: | 5.005 |
+|  Perl Version: | 5.008 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
-|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
-<!-- FIM Plugin Info -->
+|  Support: | http://foswiki.org/Support/%TOPIC% |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

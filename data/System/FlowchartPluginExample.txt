@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="AurelioAHeckert" date="1119967705" format="1.0" version="1.3"}%
+%META:TOPICINFO{author="ProjectContributor" date="1119967705" format="1.1" version="1.0"}%
 %META:TOPICPARENT{name="FlowchartPlugin"}%
 ---+!! FlowchartPlugin Example
 
@@ -102,5 +102,4 @@
 
 
 
--- TWiki:Main.AurelioAHeckert - 25 Jun 2005
 

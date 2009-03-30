@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="720px" height="630px">
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  <<             Created with FlowchartPlugin for TWiki                >>
-  <<  Get it on http://twiki.org/cgi-bin/view/Plugins/FlowchartPlugin  >>
+  <<             Created with FlowchartPlugin for Foswiki              >>
+  <<     Get it on http://foswiki.org/Extensions/FlowchartPlugin       >>
     This flowchart was based on:
-    http://localhost/cgi-bin/twiki/view/TWiki/FlowchartPluginExample
+    http://localhost/cgi-bin/foswiki/view/System/FlowchartPluginExample
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <rect id="caixa_fluxIten1" x="20" y="15"
         rx="13.3333333333333" ry="13.3333333333333"
