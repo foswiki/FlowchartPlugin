@@ -70,7 +70,7 @@ $VERSION = '$Rev$';
 # This is a free-form string you can use to "name" your own plugin version.
 # It is *not* used by the build automation tools, but is reported as part
 # of the version number in PLUGINDESCRIPTIONS.
-$RELEASE = '30 Mar 2009';
+$RELEASE = '05 May 2009';
 
 # for th 1.0 need:
 #   * Validate data
@@ -636,9 +636,9 @@ sub afterSaveHandler
     my $web = $_[2];
     $web =~ s/(\/)/\./g;
 
-    my $tempFileName = $Foswiki::cfg{TempfileDir} . '/' . $web . '_' . $_[1] . '.txt';
-
-    Foswiki::Func::saveFile( $tempFileName, 'ini' );
+#   Debug stuff
+#   my $tempFileName = $Foswiki::cfg{TempfileDir} . '/' . $web . '_' . $_[1] . '.txt';
+#   Foswiki::Func::saveFile( $tempFileName, 'ini' );
     
     # This handler is called by Foswiki::Store::saveTopic just after the save action.
     # New hook in Foswiki::Plugins $VERSION = '1.020'
