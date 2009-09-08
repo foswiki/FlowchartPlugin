@@ -1,0 +1,6 @@
+%META:TOPICINFO{author="ProjectContributor" date="1182547552" format="1.1" %version="$Rev: 1340 $"}%
+%META:TOPICPARENT{name="Macros"}%
+#VarFLOWCHART
+---+++ FLOWCHART{ _attributes_ } -- create a flowchart from topic text.
+
+   * The =%<nop>FLOWCHART%= macro is handled by the FlowchartPlugin. For more information please see the [[FlowchartPlugin][plugin topic]], or the [[FlowchartPluginExample][example]].
