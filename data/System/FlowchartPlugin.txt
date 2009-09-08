@@ -89,10 +89,9 @@ The files (SVG, PNG and Map) are generated when the topic contend =%<nop>FLOWCHA
 
 ---++ Plugin Settings
 
-Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>FLOWCHARTPLUGIN_DEBUG%==
 
-   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-      * Set SHORTDESCRIPTION = Create a flowchart from topic text
+To override the default settings, add them to [[%LOCALSITEPREFS%]].
 
    * Default width for the flowchart's itens
       * Set ITEM_WIDTH = 140
@@ -109,8 +108,12 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
    * Default style for the =img= tag
       * Set TAG_STYLE = border:1px dotted #505050;
 
+---
+
    * Debug plugin: (See output in =data/debug.txt=)
       * Set DEBUG = 0
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Create a flowchart from topic text
 
 ---++ Plugin Installation Instructions
 
@@ -119,8 +122,9 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 ---++ Plugin Info
 
 |  Plugin Author: | TWiki:Main.AurelioAHeckert (Foswiki port - Foswiki:Main.KennethLavrsen.) |
-|  Plugin Version: | 30 Mar 2009 |
+|  Plugin Version: | 09 Sep 2009 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  09 Sep 2009 | Foswikitask:Item4189 - Improve docs; Foswikitask:Item8267 - do not read preferences from the plugin topic (Foswiki:Main.AndrewJones) |
 |  05 May 2009 | Foswikitask:Item1570 - Removed what seems to be forgotten debug code that floods the tmp dir with files named web_topic.txt with the content ini (Foswiki:Main.KennethLavrsen) |
 |  30 Mar 2009 | Foswikitask:Item1253 - Ported to Foswiki (Foswiki:Main.KennethLavrsen) |
 |  13786 | TWikibug:Item4090 - Failed if topics attachment directory did not exist (Foswiki:Main.AndrewJones). |
