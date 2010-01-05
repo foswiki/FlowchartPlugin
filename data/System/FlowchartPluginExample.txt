@@ -100,6 +100,6 @@
 
 ---++ This title is out of the Flowchart
 
-
-
-
+%META:FILEATTACHMENT{name="flowchart_FlowchartPluginExample.png" attachment="flowchart_FlowchartPluginExample.png" attr="h" comment="" date="1238423287" size="141744" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="flowchart_FlowchartPluginExample.svg" attachment="flowchart_FlowchartPluginExample.svg" attr="h" comment="" date="1238423305" size="20578" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="flowchartMapImg_FlowchartPluginExample.txt" attachment="flowchartMapImg_FlowchartPluginExample.txt" attr="h" comment="" date="1238423324"  size="3030" user="ProjectContributor" version="1"}%
