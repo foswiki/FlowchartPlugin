@@ -124,7 +124,7 @@ To override the default settings, add them to [[%LOCALSITEPREFS%]].
 |  Plugin Author: | TWiki:Main.AurelioAHeckert (Foswiki port - Foswiki:Main.KennethLavrsen.) |
 |  Plugin Version: | 05 Jan 2010 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  05 Jan 2010 | Foswikitask:Item2586: Invalid META header in !VarFLOWCHART gives wrong revision and can make the core code crash if a search finds this topic |
+|  05 Jan 2010 | Foswikitask:Item2586: Invalid META header in !VarFLOWCHART gives wrong revision and can make the core code crash if a search finds this topic <br /> Foswikitask:Item2588: Plugin lacks its attachments for the example topic |
 |  09 Sep 2009 | Foswikitask:Item4189 - Improve docs; Foswikitask:Item8267 - do not read preferences from the plugin topic (Foswiki:Main.AndrewJones) |
 |  05 May 2009 | Foswikitask:Item1570 - Removed what seems to be forgotten debug code that floods the tmp dir with files named web_topic.txt with the content ini (Foswiki:Main.KennethLavrsen) |
 |  30 Mar 2009 | Foswikitask:Item1253 - Ported to Foswiki (Foswiki:Main.KennethLavrsen) |
