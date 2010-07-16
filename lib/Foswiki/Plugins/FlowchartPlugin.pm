@@ -20,10 +20,6 @@
 package Foswiki::Plugins::FlowchartPlugin;
 
 # =========================
-use vars qw(
-  $web $topic $user $installWeb $VERSION $RELEASE $pluginName
-  $debug
-);
 
 # This should always be $Rev$ so that Foswiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
@@ -39,9 +35,11 @@ our $pluginName = 'FlowchartPlugin';    # Name of this Plugin
 
 our $NO_PREFS_IN_TOPIC = 1;    # don't get preferences from plugin topic
 
+our $debug = 0;
+
 # =========================
 sub initPlugin {
-    ( $topic, $web, $user, $installWeb ) = @_;
+    my ( $topic, $web, $user, $installWeb ) = @_;
 
     # Get plugin debug flag
     $debug = $Foswiki::cfg{Plugins}{$pluginName}{Debug} || 0;
@@ -179,20 +177,22 @@ sub desenhaFluxograma {
     }
     Foswiki::Func::saveFile( "$myPub/flowchart_$topic.svg",       $svg );
     Foswiki::Func::saveFile( "$myPub/flowchartMapImg_$topic.txt", $mapImg );
-    
+
     my $cmd =
-        $Foswiki::cfg{Plugins}{$pluginName}{ImageMagickCmd} . # /usr/bin/convert
-        ' %INFILE|F% -resize %PCNT|S%x%PCNT|S% %OUTFILE|F%';
+      $Foswiki::cfg{Plugins}{$pluginName}{ImageMagickCmd} .   # /usr/bin/convert
+      ' %INFILE|F% -resize %PCNT|S%x%PCNT|S% %OUTFILE|F%';
     Foswiki::Func::writeDebug("Command: $cmd") if $debug;
     my ( $output, $status ) = Foswiki::Sandbox->sysCommand(
         $cmd,
-        INFILE => "$myPub/flowchart_$topic.svg",
-        PCNT => "$percentReduce%",
+        INFILE  => "$myPub/flowchart_$topic.svg",
+        PCNT    => "$percentReduce%",
         OUTFILE => "$myPub/flowchart_$topic.png",
     );
-    
+
     if ($status) {
-        Foswiki::Func::writeWarning("FlowchartPlugin: error while executing 'convert' command. status: $status; output: $output");
+        Foswiki::Func::writeWarning(
+"FlowchartPlugin: error while executing 'convert' command. status: $status; output: $output"
+        );
     }
 }
 
@@ -842,11 +842,7 @@ sub afterSaveHandler {
     my $web = $_[2];
     $web =~ s/(\/)/\./g;
 
-#   Debug stuff
-#   my $tempFileName = $Foswiki::cfg{TempfileDir} . '/' . $web . '_' . $_[1] . '.txt';
-#   Foswiki::Func::saveFile( $tempFileName, 'ini' );
-
-    # Hire is the right position to create the image.
+    # here is the right place to create the image.
     if ( $_[0] =~ m/%FLOWCHART%/ ) {
         &desenhaFluxograma( $_[0], $_[1], $_[2], '' );
     }
