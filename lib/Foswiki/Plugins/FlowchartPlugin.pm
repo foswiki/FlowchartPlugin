@@ -3,7 +3,7 @@
 # Copyright (C) 2000-2003 Andrea Sterbini, a.sterbini@flashnet.it
 # Copyright (C) 2001-2004 Peter Thoeny, peter@thoeny.com
 # Copyright (C) 2005... Aurelio A. Heckert, aurium@gmail.com
-# Copyright (C) 2009... Foswiki Contributors
+# Copyright (C) 2009-2010 Foswiki Contributors
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -22,7 +22,7 @@ package Foswiki::Plugins::FlowchartPlugin;
 # =========================
 use vars qw(
   $web $topic $user $installWeb $VERSION $RELEASE $pluginName
-  $debug $exampleCfgVar
+  $debug
 );
 
 # This should always be $Rev$ so that Foswiki can determine the checked-in
@@ -33,7 +33,7 @@ our $VERSION = '$Rev$';
 # This is a free-form string you can use to "name" your own plugin version.
 # It is *not* used by the build automation tools, but is reported as part
 # of the version number in PLUGINDESCRIPTIONS.
-our $RELEASE = '05 Jan 2010';
+our $RELEASE = '16 Jul 2010';
 
 our $pluginName = 'FlowchartPlugin';    # Name of this Plugin
 
@@ -44,11 +44,7 @@ sub initPlugin {
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # Get plugin debug flag
-    $debug = Foswiki::Func::getPluginPreferencesFlag("DEBUG");
-
- # Get plugin preferences, the variable defined by:          * Set EXAMPLE = ...
-    $exampleCfgVar = Foswiki::Func::getPluginPreferencesValue("EXAMPLE")
-      || "default";
+    $debug = $Foswiki::cfg{Plugins}{$pluginName}{Debug} || 0;
 
     # Plugin correctly initialized
     Foswiki::Func::writeDebug(
@@ -114,8 +110,9 @@ sub mostraFluxograma {
       || Foswiki::Func::getPluginPreferencesValue('TAG_STYLE')
       || 'border:1px dotted #505050;';
 
-    return "$mapImg
-<img src=\"\%ATTACHURL%/flowchart_$topic.png\" usemap=\"#flowchart_$topic\" style=\"$style\" alt=\"flowchart_$topic\"/>";
+    return <<"HERE";
+$mapImg <img src="%ATTACHURL%/flowchart_$topic.png" usemap="#flowchart_$topic" style="$style" alt="flowchart_$topic"/>
+HERE
 }
 
 sub desenhaFluxograma {
@@ -182,9 +179,21 @@ sub desenhaFluxograma {
     }
     Foswiki::Func::saveFile( "$myPub/flowchart_$topic.svg",       $svg );
     Foswiki::Func::saveFile( "$myPub/flowchartMapImg_$topic.txt", $mapImg );
-    system( "convert", "$myPub/flowchart_$topic.svg", '-resize',
-        $percentReduce . '%x' . $percentReduce . '%',
-        "$myPub/flowchart_$topic.png" );
+    
+    my $cmd =
+        $Foswiki::cfg{Plugins}{$pluginName}{ImageMagickCmd} . # /usr/bin/convert
+        ' %INFILE|F% -resize %PCNT|S%x%PCNT|S% %OUTFILE|F%';
+    Foswiki::Func::writeDebug("Command: $cmd") if $debug;
+    my ( $output, $status ) = Foswiki::Sandbox->sysCommand(
+        $cmd,
+        INFILE => "$myPub/flowchart_$topic.svg",
+        PCNT => "$percentReduce%",
+        OUTFILE => "$myPub/flowchart_$topic.png",
+    );
+    
+    if ($status) {
+        Foswiki::Func::writeWarning("FlowchartPlugin: error while executing 'convert' command. status: $status; output: $output");
+    }
 }
 
 my $itemPositionDefault = 1;    # will be 1 only to the frist!

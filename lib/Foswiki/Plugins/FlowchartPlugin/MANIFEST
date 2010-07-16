@@ -5,3 +5,4 @@ lib/Foswiki/Plugins/FlowchartPlugin.pm NEW
 pub/System/FlowchartPluginExample/flowchart_FlowchartPluginExample.png NEW
 pub/System/FlowchartPluginExample/flowchart_FlowchartPluginExample.svg NEW
 pub/System/FlowchartPluginExample/flowchartMapImg_FlowchartPluginExample.txt NEW
+lib/Foswiki/Plugins/FlowchartPlugin/Config.spec Configuration Items

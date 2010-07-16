@@ -89,7 +89,7 @@ The files (SVG, PNG and Map) are generated when the topic contend =%<nop>FLOWCHA
 
 ---++ Plugin Settings
 
-Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>FLOWCHARTPLUGIN_DEBUG%==
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>FLOWCHARTPLUGIN_ITEM_WIDTH%==
 
 To override the default settings, add them to [[%LOCALSITEPREFS%]].
 
@@ -110,8 +110,6 @@ To override the default settings, add them to [[%LOCALSITEPREFS%]].
 
 ---
 
-   * Debug plugin: (See output in =data/debug.txt=)
-      * Set DEBUG = 0
    * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Create a flowchart from topic text
 
@@ -121,9 +119,11 @@ To override the default settings, add them to [[%LOCALSITEPREFS%]].
 
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main.AurelioAHeckert (Foswiki port - Foswiki:Main.KennethLavrsen.) |
-|  Plugin Version: | 05 Jan 2010 |
+|  Plugin Author: | Foswiki:Main.AurelioAHeckert (Foswiki port - Foswiki:Main.KennethLavrsen.) |
+|  Plugin Release: | %$RELEASE% |
+|  Plugin Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  16 Jul 2010 | Foswikitask:Item9339: Replace call to =system()= with =Foswiki::Sandbox->sysCommand()=; Set the path to !ImageMagick in configure (Foswiki:Main.AndrewJones) |
 |  05 Jan 2010 | Foswikitask:Item2586: Invalid META header in !VarFLOWCHART gives wrong revision and can make the core code crash if a search finds this topic <br /> Foswikitask:Item2588: Plugin lacks its attachments for the example topic |
 |  09 Sep 2009 | Foswikitask:Item4189 - Improve docs; Foswikitask:Item8267 - do not read preferences from the plugin topic (Foswiki:Main.AndrewJones) |
 |  05 May 2009 | Foswikitask:Item1570 - Removed what seems to be forgotten debug code that floods the tmp dir with files named web_topic.txt with the content ini (Foswiki:Main.KennethLavrsen) |
