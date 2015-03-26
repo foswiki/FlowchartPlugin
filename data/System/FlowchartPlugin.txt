@@ -123,6 +123,7 @@ To override the default settings, add them to [[%LOCALSITEPREFS%]].
 |  Plugin Release: | %$RELEASE% |
 |  Plugin Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  26 Mar 2015 | Foswikitask:Item13334: fixed initialization in persistent perl envs (Foswiki:Main.MichaelDaum) |
 |  16 Jul 2010 | Foswikitask:Item9339: Replace call to =system()= with =Foswiki::Sandbox->sysCommand()=; Set the path to !ImageMagick in configure (Foswiki:Main.AndrewJones) |
 |  05 Jan 2010 | Foswikitask:Item2586: Invalid META header in !VarFLOWCHART gives wrong revision and can make the core code crash if a search finds this topic <br /> Foswikitask:Item2588: Plugin lacks its attachments for the example topic |
 |  09 Sep 2009 | Foswikitask:Item4189 - Improve docs; Foswikitask:Item8267 - do not read preferences from the plugin topic (Foswiki:Main.AndrewJones) |

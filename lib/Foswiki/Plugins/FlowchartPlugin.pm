@@ -21,21 +21,23 @@ package Foswiki::Plugins::FlowchartPlugin;
 
 # =========================
 
-# This should always be $Rev$ so that Foswiki can determine the checked-in
-# status of the plugin. It is used by the build automation tools, so
-# you should leave it alone.
-our $VERSION = '$Rev$';
-
-# This is a free-form string you can use to "name" your own plugin version.
-# It is *not* used by the build automation tools, but is reported as part
-# of the version number in PLUGINDESCRIPTIONS.
-our $RELEASE = '16 Jul 2010';
-
+our $VERSION = '1.00';
+our $RELEASE = '26 Mar 2015';
 our $pluginName = 'FlowchartPlugin';    # Name of this Plugin
-
 our $NO_PREFS_IN_TOPIC = 1;    # don't get preferences from plugin topic
 
 our $debug = 0;
+our %fluxItens;
+our $totItens;
+our %caixa;
+our %seta;
+our $textSize;
+our $styleText;
+our $styleLinha;
+
+our $itemPositionDefault;
+our $firstItemId;
+our $lastItemId;
 
 # =========================
 sub initPlugin {
@@ -48,6 +50,42 @@ sub initPlugin {
     Foswiki::Func::writeDebug(
         "- Foswiki::Plugins::${pluginName}::initPlugin( $web.$topic ) is OK")
       if $debug;
+
+    # reset defaults
+    %fluxItens = ();
+    $totItens  = 0;
+    %caixa     = (
+        'w'               => 0,
+        'h'               => 0,
+        'areaX'           => 0,
+        'areaY'           => 0,
+        'bigerPosX'       => 1,
+        'bigerPosY'       => 1,
+        'color_start'     => 'c0d8c0',
+        'color_end'       => 'b0b8c0',
+        'color_end-error' => 'e0a0a0',
+        'color_action'    => 'c0d0e0',
+        'color_question'  => 'e0d0c0',
+        'style' =>
+'fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;'
+    );
+    %seta = (
+        'N'     => "M 5,0 L 0,10 L 5,8 L 10,10 L 5,0 z",
+        'S'     => "M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z",
+        'L'     => "M 10,5 L 0,0 L 2,5 L 0,10 L 10,5 z",
+        'O'     => "M 0,5 L 10,0 L 8,5 L 10,10 L 0,5 z",
+        'style' => 'stroke:none;fill:#707070;'
+    );
+    $textSize = 17;
+    $styleText =
+"font-size:${textSize}px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;";
+    $styleLinha =
+      'stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;';
+
+    $itemPositionDefault = 1;    # will be 1 only to the frist!
+    $firstItemId         = 0;
+    $lastItemId          = 0;
+
     return 1;
 }
 
@@ -67,36 +105,6 @@ sub commonTagsHandler {
     $_[0] =~ s/%FLOWCHART_START%//g;
     $_[0] =~ s/%FLOWCHART_STOP%//g;
 }
-
-my %fluxItens;
-my $totItens = 0;
-my %caixa    = (
-    'w'               => 0,
-    'h'               => 0,
-    'areaX'           => 0,
-    'areaY'           => 0,
-    'bigerPosX'       => 1,
-    'bigerPosY'       => 1,
-    'color_start'     => 'c0d8c0',
-    'color_end'       => 'b0b8c0',
-    'color_end-error' => 'e0a0a0',
-    'color_action'    => 'c0d0e0',
-    'color_question'  => 'e0d0c0',
-    'style' =>
-'fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;'
-);
-my %seta = (
-    'N'     => "M 5,0 L 0,10 L 5,8 L 10,10 L 5,0 z",
-    'S'     => "M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z",
-    'L'     => "M 10,5 L 0,0 L 2,5 L 0,10 L 10,5 z",
-    'O'     => "M 0,5 L 10,0 L 8,5 L 10,10 L 0,5 z",
-    'style' => 'stroke:none;fill:#707070;'
-);
-my $textSize = 17;
-my $styleText =
-"font-size:${textSize}px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;";
-my $styleLinha =
-  'stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;';
 
 sub mostraFluxograma {
     my ( $text, $topic, $web, $params ) = @_;
@@ -195,10 +203,6 @@ sub desenhaFluxograma {
         );
     }
 }
-
-my $itemPositionDefault = 1;    # will be 1 only to the frist!
-my $firstItemId;
-my $lastItemId;
 
 sub registerLastItem {
     use Encode;

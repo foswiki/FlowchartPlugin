@@ -1,6 +1,6 @@
 # ---+ Extensions
 # ---++ FlowchartPlugin
-# **COMMAND M**
+# **COMMAND**
 # Path to the ImageMagick 'convert' program
 $Foswiki::cfg{Plugins}{FlowchartPlugin}{ImageMagickCmd} = '/usr/bin/convert';
 # **BOOLEAN**
