@@ -1,0 +1,10 @@
+igp_*
+*.swp
+genpdf_*
+FlowchartPlugin.md5
+FlowchartPlugin.sha1
+FlowchartPlugin.tgz
+FlowchartPlugin.txt
+FlowchartPlugin.zip
+FlowchartPlugin_installer
+FlowchartPlugin_installer.pl

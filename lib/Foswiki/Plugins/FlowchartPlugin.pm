@@ -164,8 +164,7 @@ sub desenhaFluxograma {
             $title .= $1;
         }
 
-#if ( $line =~ m/^[ ][ ][ ]\*\s*(.+?[^ ])\s*:\s*(.+[^ ])\s*/ ) { # Não tá funcionando Porra!
-        if ( $line =~ m/^\s\*\s*(.+?[^ ])\s*:\s*(.+[^ ])\s*/ )
+        if ( $line =~ m/^(?:\t|\s\s\s)\*\s*(.+?[^ ])\s*:\s*(.+[^ ])\s*/ )
         {    # Isso tá errado e funciona. Merda!
             $id      = $2 if ( lc($1) eq 'id' );
             $type    = $2 if ( lc($1) eq 'type' );
